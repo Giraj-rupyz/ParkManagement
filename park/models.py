@@ -10,6 +10,6 @@ class Ticket(models.Model):
     name=models.CharField(max_length=50)
     age=models.PositiveIntegerField()
     user_type=models.CharField(max_length=50)
-    price=models.DecimalField(decimal_places=2, max_digits=20, default=0)
+    price=models.DecimalField(decimal_places=2, max_digits=20, default=500)
 
 

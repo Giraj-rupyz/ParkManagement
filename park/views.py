@@ -23,7 +23,12 @@ class ListVisitor(APIView):
 class CreateTicket(APIView):
 
     def post(self, request):
-        request.data['price'] = 25
+        lst=list(UserTypeDiscount.objects.all())
+        discount_map={UserType.user_type: UserType.discount for UserType in lst}
+        base_price=500
+        if request.data['user_type'] in discount_map.keys():
+            request.data['price']=base_price-((discount_map[request.data['user_type']]/100)*base_price)
+
         serializer = TicketSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
