@@ -3,6 +3,7 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import APIView
 from rest_framework.response import Response
+from rest_framework import permissions
 
 from .models import Ticket, UserTypeDiscount
 from .serializers import TicketSerializer, UserTypeSerializer
@@ -37,6 +38,7 @@ class CreateTicket(APIView):
 
 
 class SetDiscount(APIView):
+    permission_classes=[permissions.IsAuthenticated]
 
     def post(self, request):
         serializer = UserTypeSerializer(data=request.data)

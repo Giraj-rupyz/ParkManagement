@@ -1,0 +1,5 @@
+# ignore all files in directory named venv and migrations
+.venv/
+migrations/
+# ignore all db files
+*.sqlite3
